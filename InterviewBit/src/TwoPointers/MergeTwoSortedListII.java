@@ -1,4 +1,4 @@
-package com.interview.bit.two.pointers;
+package TwoPointers;
 
 import java.util.ArrayList;
 

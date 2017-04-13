@@ -1,4 +1,4 @@
-package TwoPointers;
+package twoPointers;
 
 /*Find the intersection of two sorted arrays.
 OR in other words,

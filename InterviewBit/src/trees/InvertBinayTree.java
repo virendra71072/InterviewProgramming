@@ -1,4 +1,4 @@
-package Trees;
+package trees;
 
 /*Given a binary tree, invert the binary tree and return it. 
 Look at the example for more details.

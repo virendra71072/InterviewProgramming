@@ -8,14 +8,6 @@ Input : 1 -> 5 -> 4 -> 3
 
 Returned list : 1 -> 3 -> 4 -> 5*/
 public class SortList {
-  class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int val) {
-      this.val = val;
-    }
-  }
 
   public ListNode sortList(ListNode node) {
     if (node == null || node.next == null)

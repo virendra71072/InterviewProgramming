@@ -1,6 +1,8 @@
 package hashing;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 /*
 Given an array of strings, return all groups of strings that are anagrams. Represent a group by a list of integers representing the index in the original list. Look at the sample case for clarification.
 
@@ -18,26 +20,23 @@ public class Anagrams {
 
     private static ArrayList<ArrayList<Integer>> anagrams(List<String> list) {
 
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         Map<String, ArrayList<Integer>> map = new HashMap<>();
         for (int i = 0; i < list.size(); i++) {
             char[] arr = list.get(i).toCharArray();
             Arrays.sort(arr);
             String str = new String(arr);
-            ArrayList<Integer> temp = new ArrayList<>();
-            if (map.containsKey(str)) {
-                ArrayList<Integer> newList = map.get(str);
-                newList.add(i + 1);
-                map.put(str, newList);
-            } else {
-                temp.add(i + 1);
-                map.put(str, temp);
-            }
-        }
-        map.forEach((k, v) -> {
-            result.add(v);
-        });
+            int index = i+1;
+            map.computeIfPresent(str,(k,v)->{
+                map.get(str).add(index);
+                return v;
+            });
 
-        return result;
+            map.computeIfAbsent(str,(k)->{
+                return Arrays.asList(index).stream().
+                        collect(Collectors.toCollection(ArrayList::new));
+            });
+        }
+        return map.values().stream()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

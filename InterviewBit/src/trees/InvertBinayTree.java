@@ -20,15 +20,6 @@ invert and return
 7   6 5   4
 */
 public class InvertBinayTree {
-  class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int val) {
-      this.val = val;
-    }
-  }
 
   public TreeNode invertTree(TreeNode root) {
     if (root == null)

@@ -1,0 +1,75 @@
+<?php
+
+// Class for Binary tree
+class BinaryNode {
+
+    public $value = null; // node value
+    public $left = null; // left child
+    public $right = null; // right child
+    
+    /**
+     * construct binary node
+     * 
+     * @param array $files
+     *
+     * @return array
+     */
+    public function __construct($value) {
+        $this->value = $value;
+        
+        // new nodes are leaf nodes
+        $this->left = null;
+        $this->right = null;
+    }
+
+}
+
+/**
+ * convert tree in invert format
+ * 
+ * @param array $root
+ *
+ * @return array
+ */
+function invertTree($root) {
+    if ($root == null) {
+        return null;
+    }
+
+    $left = invertTree($root->left);
+    $right = invertTree($root->right);
+
+    $root->left = $right;
+    $root->right = $left;
+
+    return $root;
+}
+
+//Adding node into tree
+$root = new BinaryNode(1);
+$rootLeftChild = new BinaryNode(2);
+$rootRightChild = new BinaryNode(3);
+$rootLeftChildLeftChild = new BinaryNode(4);
+$rootLeftChildRightNode = new BinaryNode(5);
+$rootRightChildLeftChild = new BinaryNode(6);
+$rootRightChildRightNode = new BinaryNode(7);
+$rootLeftChild->left = $rootLeftChildLeftChild;
+$rootLeftChild->right = $rootLeftChildRightNode;
+
+//$rootLeftChild->left->left = new BinaryNode(8);
+//$rootLeftChild->right->left = new BinaryNode(9);
+
+$rootRightChild->left = $rootRightChildLeftChild;
+$rootRightChild->right = $rootRightChildRightNode;
+$root->left = $rootLeftChild;
+$root->right = $rootRightChild;
+
+
+echo '<pre>Original Tree';
+print_r($root);
+
+$invertedTree = invertTree($root);
+
+echo '<br/>After Invert tree<br/>';
+print_r($invertedTree);
+?>
